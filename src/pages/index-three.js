@@ -71,7 +71,7 @@ export default function IndexThree(){
                                 <h5 className="text-lg font-semibold mb-3">Ventas</h5>
                                 <div className="flex justify-between mt-3 mb-2">
                                     <span className="text-slate-400">Crecimiento</span>
-                                    <span className="text-slate-400">84%</span>
+                                    <span className="text-slate-400">90%</span>
                                 </div>
                                 <div className="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-[6px]">
                                     <div className="bg-teal-500 h-[6px] rounded-full" style={{width: "84%"}}></div>
