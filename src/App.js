@@ -12,7 +12,7 @@ import IndexSeven from './pages/index-seven';
 
 function App() {
   return (
-    <BrowserRouter basename="pinegrowth-page">
+    <BrowserRouter basename="/pinegrowth-page">
       <Routes>
       <Route path='/' element={<IndexThree/>}/>
       <Route path='/index-two' element={<IndexTwo/>}/>
