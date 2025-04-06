@@ -12,7 +12,8 @@ import IndexSeven from './pages/index-seven';
 
 function App() {
   return (
-    <Routes>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <Routes>
       <Route path='/' element={<IndexThree/>}/>
       <Route path='/index-two' element={<IndexTwo/>}/>
       <Route path='/index-three' element={<Index/>}/>
@@ -21,6 +22,8 @@ function App() {
       <Route path='/index-six' element={<IndexSix/>}/>
       <Route path='/index-seven' element={<IndexSeven/>}/>
     </Routes>
+    </BrowserRouter>
+    
   );
 }
 
