@@ -1,7 +1,7 @@
 import './App.css';
 import './assets/css/tailwind.css'
 import './assets/css/materialdesignicons.min.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Index from './pages';
 import IndexTwo from './pages/index-two';
 import IndexThree from './pages/index-three';
@@ -12,7 +12,7 @@ import IndexSeven from './pages/index-seven';
 
 function App() {
   return (
-    <BrowserRouter basename="/pinegrowth-page">
+    // <BrowserRouter basename="/pinegrowth-page">
       <Routes>
       <Route path='/' element={<IndexThree/>}/>
       <Route path='/index-two' element={<IndexTwo/>}/>
@@ -22,7 +22,7 @@ function App() {
       <Route path='/index-six' element={<IndexSix/>}/>
       <Route path='/index-seven' element={<IndexSeven/>}/>
     </Routes>
-    </BrowserRouter>
+    // </BrowserRouter>
     
   );
 }
