@@ -1,9 +1,6 @@
 import { FiTrendingUp, FiDollarSign, FiCompass,FiCommand, FiBox, FiCamera, FiBell, FiMonitor } from '../assets/icons/vander'
 import client1 from '../assets/images/team/01.jpg'
-import client2 from '../assets/images/team/02.jpg'
-import client3 from '../assets/images/team/03.jpg'
 import client4 from '../assets/images/team/04.jpg'
-import client5 from '../assets/images/team/05.jpg'
 import client6 from '../assets/images/team/06.jpg'
 
 import blog1 from '../assets/images/blog/01.jpg'

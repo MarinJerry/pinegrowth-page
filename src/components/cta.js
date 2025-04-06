@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ctaImage from "../assets/images/home.png"
 
 import ModalVideo from 'react-modal-video';
-import '../../node_modules/react-modal-video/scss/modal-video.scss';
+import 'react-modal-video/scss/modal-video.scss';
 
 export default function Cta(){
     let [isOpen, setOpen] = useState(false);
