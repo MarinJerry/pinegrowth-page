@@ -1,4 +1,4 @@
-name: Deploy React to GitHub Pages
+name: Deploy React to GitHub Page
 
 on:
   push:
