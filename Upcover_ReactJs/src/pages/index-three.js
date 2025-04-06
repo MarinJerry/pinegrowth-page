@@ -32,7 +32,7 @@ export default function IndexThree(){
             <div className="container relative">
                 <div className="grid lg:grid-cols-12 md:grid-cols-2 grid-cols-1 items-center mt-6 gap-6 relative">
                     <div className="lg:col-span-7 md:me-6">
-                        <h4 className="font-semibold lg:leading-normal leading-normal tracking-wide text-4xl lg:text-5xl mb-5">Haz crecer tu <span className="text-teal-500 font-bold">Negocio</span> con Pine Grow Solutions</h4>
+                        <h4 className="font-semibold lg:leading-normal leading-normal tracking-wide text-4xl lg:text-5xl mb-5">Haz crecer tu <span className="text-teal-500 font-bold">Negocio</span> con PineGrowth Solutions</h4>
                         <p className="text-slate-400 text-lg max-w-xl">Empoderamos a PYMEs y emprendedores con innovación, tecnología y consultoría adaptada a sus necesidades.</p>
                     
                         <div className="relative mt-6 space-x-1">
@@ -60,12 +60,12 @@ export default function IndexThree(){
                                         <FiMonitor className="h-6 w-6"/>
                                     </div>
                                     <div className="flex-1">
-                                        <span className="text-slate-400">Visitantes</span>
-                                        <p className="text-xl font-bold"><CountUp className="counter-value" start={0} end={4589}/></p>
+                                        <span className="text-slate-400">Herramientas Digitales </span>
+                                        <p className="text-xl font-bold"><CountUp className="counter-value" start={0} end={15}/></p>
                                     </div>
                                 </div>
     
-                                <span className="text-green-600"><i className="uil uil-chart-down"></i> + 0.5%</span>
+                                <span className="text-green-600"><i className="uil uil-chart-down"></i> </span>
                             </div>
     
                             <div className="absolute top-16 md:-end-10 -end-5 p-4 rounded-lg shadow-md dark:shadow-gray-800 bg-white dark:bg-slate-900 w-48 m-3">
@@ -86,10 +86,10 @@ export default function IndexThree(){
         <About/>
         <Services/>
         <AgencyTab/>
-        <Cta/>
         <Client/>
+        <Cta/>
         <Pricing/>
-        <Blogs/>
+        {/* <Blogs/> */}
         <GetInTouch/>
         <Footer/>
         <Switcher/>

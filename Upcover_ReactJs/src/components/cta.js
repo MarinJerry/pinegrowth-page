@@ -37,15 +37,15 @@ export default function Cta(){
                                 <div className="grid md:grid-cols-2 grid-cols-1 items-center">
                                     <div className="mt-8">
                                         <div className="section-title text-md-start">
-                                            <h6 className="text-white/70 text-sm font-semibold uppercase">Get Free Trial</h6>
-                                            <h3 className="font-semibold text-2xl leading-normal text-white mt-2">Get An Easy Start <br/> With Upcover Now</h3>
+                                            <h6 className="text-white/70 text-sm font-semibold uppercase">Obtener un DEMO</h6>
+                                            <h3 className="font-semibold text-2xl leading-normal text-white mt-2">Prueba Adel-IA AHORA<br/> e impulsa tu negocio</h3>
                                         </div>
                                     </div>
 
                                     <div className="mt-8">
                                         <div className="section-title text-md-start">
-                                            <p className="text-white/70 max-w-xl mx-auto mb-2">This is just a simple text made for this unique and awesome template, you can replace it with any text.</p>
-                                            <Link to="" className="text-white">Read More <i className="mdi mdi-chevron-right align-middle"></i></Link>
+                                            <p className="text-white/70 max-w-xl mx-auto mb-2">Adel-IA es la plataforma de IA por excelencia para la gestión de PYMES, impulsa la prestación de servicios con nuestra asistente virtual.</p>
+                                            <Link to="" className="text-white">Ver más <i className="mdi mdi-chevron-right align-middle"></i></Link>
                                         </div>
                                     </div>
                                 </div>

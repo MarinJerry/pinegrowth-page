@@ -7,9 +7,9 @@ export default function Services(){
         <section className="relative md:py-24 py-16 bg-slate-50 dark:bg-slate-800" id="services">
             <div className="container relative">
                 <div className="grid grid-cols-1 pb-6 text-center">
-                    <h3 className="font-semibold text-2xl leading-normal mb-4">Our Services</h3>
+                    <h3 className="font-semibold text-2xl leading-normal mb-4">Nuestros Servicios</h3>
 
-                    <p className="text-slate-400 max-w-xl mx-auto">This is just a simple text made for this unique and awesome template, you can replace it with any text.</p>
+                    <p className="text-slate-400 max-w-xl mx-auto">Impulsamos el crecimiento de tu empresa, como un pino que echa raíces firmes y crece hacia el cielo.</p>
                 </div>
 
                 <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-6 mt-6">
@@ -26,7 +26,7 @@ export default function Services(){
                                     <p className="text-slate-400 mt-3">{item.desc}</p>
         
                                     <div className="mt-6">
-                                        <Link to="" className="text-teal-500">Read More <i className="mdi mdi-chevron-right align-middle"></i></Link>
+                                        <Link to="" className="text-teal-500">Cotizar <i className="mdi mdi-chevron-right align-middle"></i></Link>
                                     </div>
                                 </div>
         

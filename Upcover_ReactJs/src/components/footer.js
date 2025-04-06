@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logoLight from '../assets/images/logo-light.png'
+import logoLight from '../assets/images/pinehn.png'
 import {FiShoppingCart, FiDribbble, FiLinkedin, FiFacebook, FiInstagram, FiTwitter, FiMail} from '../assets/icons/vander'
 
 export default function Footer(){
@@ -11,12 +11,12 @@ export default function Footer(){
                     <div className="grid lg:grid-cols-12 md:grid-cols-3 grid-cols-1 items-center">
                         <div className="lg:col-span-3 md:text-start text-center">
                             <Link to="#" className="text-[22px] focus:outline-none">
-                                <img src={logoLight} className="mx-auto md:me-auto md:ms-0" alt=""/>
+                                <img src={logoLight} className="mx-auto md:me-auto md:ms-0" width={70} height={70} alt=""/>
                             </Link>
                         </div>
 
                         <div className="lg:col-span-5 text-center mt-6 md:mt-0">
-                            <p className="mb-0">© {new Date().getFullYear()} Upcover. Design & Develop with <i className="mdi mdi-heart text-red-600"></i> by <Link to="https://shreethemes.in/" target="_blank" className="text-reset">Shreethemes</Link>.</p>
+                            <p className="mb-0">© {new Date().getFullYear()} PineGrowth Honduras <Link to="#" target="_blank" className="text-reset"></Link>.</p>
                         </div>
 
                         <ul className="lg:col-span-4 list-none md:text-end text-center mt-6 md:mt-0">

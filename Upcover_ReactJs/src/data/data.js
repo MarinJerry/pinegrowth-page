@@ -20,83 +20,65 @@ import company6 from '../assets/images/team/spotify.svg'
 export const servicesData = [
     {
         icon:FiTrendingUp,
-        title:'Grow Your Business',
-        desc:'If the distribution of letters and words is random, the reader will not be distracted from making.'
+        title:'Inteligencia Artificial',
+        desc:'Creamos soluciones con IA que automatizan procesos, anticipan decisiones y descubren oportunidades ocultas en tu negocio.'
     },
     {
         icon:FiDollarSign,
-        title:'Drive More Sales',
-        desc:'If the distribution of letters and words is random, the reader will not be distracted from making.'
+        title:'Aplicaciones Móviles',
+        desc:'Diseñamos apps intuitivas y poderosas que llevan tu producto o servicio directamente a la palma de la mano de tus clientes.'
     },
     {
         icon:FiCompass,
-        title:'Handled By Expert',
-        desc:'If the distribution of letters and words is random, the reader will not be distracted from making.'
+        title:'Web Apps',
+        desc:'Construimos plataformas web escalables, seguras y a la medida, que centralizan y optimizan tus procesos.'
     },
     {
         icon:FiCommand,
-        title:'Discussion For Idea',
-        desc:'If the distribution of letters and words is random, the reader will not be distracted from making.'
+        title:'BI & Analytics',
+        desc:'Transformamos datos en decisiones con paneles analíticos y reportes inteligentes que hacen crecer tu visión estratégica.'
     },
     {
         icon:FiBox,
-        title:'Web Design',
-        desc:'If the distribution of letters and words is random, the reader will not be distracted from making.'
+        title:'Arquitectura en la Nube',
+        desc:'Diseñamos infraestructuras cloud resilientes, eficientes y preparadas para escalar, como un bosque que nunca deja de crecer.'
     },
     {
         icon:FiCamera,
-        title:'Network Security',
-        desc:'If the distribution of letters and words is random, the reader will not be distracted from making.'
+        title:'Outsourcing Tecnológico',
+        desc:'Delega con confianza. Nuestro equipo se integra como una extensión natural del tuyo, brindando soporte, desarrollo y evolución constante.'
     },
     {
         icon:FiBell,
-        title:'Social Media',
-        desc:'If the distribution of letters and words is random, the reader will not be distracted from making.'
+        title:'Transformación Digital',
+        desc:'Guiamos a tu empresa en el camino hacia la digitalización total. Desde la estrategia hasta la ejecución, preparamos el suelo para que tu crecimiento tecnológico sea sostenible y orgánico.'
     },
     {
         icon:FiMonitor,
-        title:'Design & Branding',
-        desc:'If the distribution of letters and words is random, the reader will not be distracted from making.'
+        title:'Consultoría Tecnológica',
+        desc:'Como los pinos más antiguos, compartimos nuestra experiencia para ayudarte a tomar decisiones tecnológicas sólidas, alineadas con tu visión de negocio y tu etapa de madurez digital.'
     },
 ]
 
 export const clientData = [
     {
         image:client1,
-        name:'Calvin Carlo',
-        title:'Manager',
-        desc:'" It seems that only fragments of the original text remain in the Lorem Ipsum texts used today. "'
-    },
-    {
-        image:client2,
-        name:'Christa Smith',
-        title:'Manager',
-        desc:'" The most well-known dummy text is the Lorem Ipsum, which is said to have originated in the 16th century. "'
-    },
-    {
-        image:client3,
-        name:'Jemina CLone',
-        title:'Manager',
-        desc:'" One disadvantage of Lorum Ipsum is that in Latin certain letters appear more frequently than others"'
+        name:'Armando Delgado',
+        title:'CEO & Fundador de Orbis Honduras',
+        desc:'". "'
     },
     {
         image:client4,
-        name:'Smith Vodka',
-        title:'Manager',
-        desc:'" Thus, Lorem Ipsum has only limited suitability as a visual filler for German texts "'
-    },
-    {
-        image:client5,
-        name:'Cristino Murfi',
-        title:'Manager',
-        desc:'" There is now an abundance of readable dummy texts. These are usually used when a text is required"'
+        name:'Franklin Lamelas',
+        title:'CEO & Fundador de innovandohoy.com',
+        desc:'" . "'
     },
     {
         image:client6,
-        name:'Cristino Murfi',
-        title:'Manager',
-        desc:'" According to most sources, Lorum Ipsum can be traced back to a text composed by Cicero "'
-    },
+        name:'Mario Suazo',
+        title:'CEO & Fundador de AppLand',
+        desc:'"."'
+    }
 ]
 
 export const blogData = [

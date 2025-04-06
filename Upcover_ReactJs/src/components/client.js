@@ -35,9 +35,9 @@ export default function Client(){
         <section className="relative md:py-24 py-16" id="review">
         <div className="container relative">
             <div className="grid grid-cols-1 pb-6 text-center">
-                <h3 className="font-semibold text-2xl leading-normal mb-4">What Our Users Say</h3>
+                <h3 className="font-semibold text-2xl leading-normal mb-4">Clientes que crecen con nosotros</h3>
 
-                <p className="text-slate-400 max-w-xl mx-auto">This is just a simple text made for this unique and awesome template, you can replace it with any text.</p>
+                <p className="text-slate-400 max-w-xl mx-auto">En PineGrowth, cada cliente es un árbol único en nuestro bosque. Hemos acompañado a emprendimientos valientes, startups en expansión y PYMES consolidadas en su camino hacia la transformación digital.</p>
             </div>
 
             <div className="grid grid-cols-1 mt-6">
