@@ -17,21 +17,33 @@ export default function GetInTouch() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+    
+        // Enviar notificación interna a tu correo
         emailjs.send(
-            "service_lwd0pqm", // Reemplaza con tu Service ID
-            "template_8mr39tr", // Reemplaza con tu Template ID
+            "service_lwd0pqm",
+            "template_l9pp5du", // para ti
             formData,
-            "EGLToteKonOwa-y3z" // Reemplaza con tu User ID
-        )
-        .then((response) => {
-            alert("Correo enviado exitosamente!");
-            setFormData({ name: "", email: "", subject: "", comments: "" });
-            console.log(formData)
-        })
-        .catch((error) => {
-            console.error("Error al enviar el correo:", error);
-            alert("Hubo un error al enviar el correo. Inténtalo nuevamente.");
+            "EGLToteKonOwa-y3z"
+        ).then((res) => {
+            console.log("Notificación interna enviada");
+    
+            // Luego enviar correo de bienvenida al cliente
+            emailjs.send(
+                "service_lwd0pqm",
+                "template_8mr39tr", // para el cliente
+                formData,
+                "EGLToteKonOwa-y3z"
+            ).then((res2) => {
+                alert("Correo enviado exitosamente!");
+                setFormData({ name: "", email: "", subject: "", comments: "" });
+            }).catch((err2) => {
+                console.error("Error al enviar correo al cliente:", err2);
+                alert("No se pudo enviar el correo de bienvenida al cliente.");
+            });
+    
+        }).catch((err) => {
+            console.error("Error al enviar notificación interna:", err);
+            alert("Hubo un error al enviar la notificación interna.");
         });
     };
 
