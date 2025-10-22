@@ -16,6 +16,7 @@ import Footer from "../components/footer";
 import Switcher from "../components/switcher";
 
 import { FiMonitor } from '../assets/icons/vander'
+import useChatWidget from '../hooks/useChatWidget';
 
 import CountUp from 'react-countup';
 
@@ -24,6 +25,15 @@ import 'react-modal-video/scss/modal-video.scss';
 
 export default function IndexThree(){
     let [isOpen, setOpen] = useState(false);
+    
+    // Configurar el widget de chat de Adela IA
+    useChatWidget({
+        api: 'http://127.0.0.1:7000/api/v1/chat/fast', // Cambia esta URL por tu API real
+        color: '#14b8a6', // Color teal que coincide con tu tema
+        botName: 'Adela IA',
+        welcome: '¡Hola! Soy Adela, tu asistente de IA. ¿Cómo puedo ayudarte a impulsar tu negocio hoy?'
+    });
+    
     return(
         <>
         <Navbar/>
