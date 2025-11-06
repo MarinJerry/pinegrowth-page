@@ -29,9 +29,14 @@ export default function About(){
                             <h6 className="text-teal-500 text-sm font-semibold uppercase mb-2">Nuestra Filosofía</h6>
                             <h3 className="font-semibold text-2xl leading-normal mb-4"> Brindamos la nutrición necesaria en forma de estrategías y acciones efectivas.</h3>
 
-                            <p className="text-slate-400 max-w-xl mb-6">En PineGrowth Advisor, nos enorgullece ser una startup líder en servicios de consultoría tecnológica.  Dedicados a ofrecer soluciones digitales de alta calidad y resultados excepcionales a nuestros clientes.</p>
+                            <p className="text-slate-400 max-w-xl mb-6">En PineGrowth Solutions, nos enorgullece ser una startup líder en servicios de consultoría tecnológica y automatización con IA. Dedicados a ofrecer soluciones digitales de alta calidad y resultados excepcionales a nuestros clientes.</p>
 
-                            <Link to="" className="h-10 px-6 tracking-wide inline-flex items-center justify-center font-medium rounded-md bg-teal-500 text-white">Conocer más <i className="mdi mdi-chevron-right align-middle ms-0.5"></i></Link>
+                            <button 
+                                onClick={() => window.openPineChat && window.openPineChat('Me gustaría conocer más sobre PineGrowth Solutions y cómo pueden ayudar a mi empresa')} 
+                                className="h-10 px-6 tracking-wide inline-flex items-center justify-center font-medium rounded-md bg-teal-500 text-white hover:bg-teal-600 transition-colors"
+                            >
+                                Conocer más <i className="mdi mdi-chevron-right align-middle ms-0.5"></i>
+                            </button>
                         </div>
                     </div>
                 </div>

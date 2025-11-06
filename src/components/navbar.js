@@ -31,7 +31,12 @@ export default function Navbar(){
                 <div className="nav-icons flex items-center lg_992:order-2 ms-auto md:ms-8">
                     <ul className="list-none menu-social mb-0">
                         <li className="inline">
-                            <Link to="" className="h-8 px-4 text-[12px] tracking-wider inline-flex items-center justify-center font-medium rounded-md bg-teal-500 text-white uppercase">Cotizar Ahora</Link>
+                            <button 
+                                onClick={() => window.openPineChat && window.openPineChat('Hola, me gustaría recibir una cotización para automatizar mi negocio con IA')} 
+                                className="h-8 px-4 text-[12px] tracking-wider inline-flex items-center justify-center font-medium rounded-md bg-teal-500 text-white uppercase hover:bg-teal-600 transition-colors"
+                            >
+                                Cotizar Ahora
+                            </button>
                         </li>
                     </ul>
                     <button data-collapse="menu-collapse" type="button" className="collapse-btn inline-flex items-center ms-2 text-dark dark:text-white lg_992:hidden" onClick={() =>setManu(!manu)}>

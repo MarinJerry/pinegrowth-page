@@ -6,8 +6,8 @@ export default function Pricing(){
         <section className="relative md:py-24 py-16 bg-slate-50 dark:bg-slate-800" id="pricing">
         <div className="container relative">
             <div className="grid grid-cols-1 pb-6 text-center">
-                <h3 className="font-semibold text-2xl leading-normal mb-4">Planes Adel-IA</h3>
-                <p className="text-slate-400 max-w-xl mx-auto">AdelIA es mucho más que una plataforma:
+                <h3 className="font-semibold text-2xl leading-normal mb-4">Planes Pine AI</h3>
+                <p className="text-slate-400 max-w-xl mx-auto">Pine AI es mucho más que una plataforma:
                 es una asistente digital potenciada por IA que te ayuda a organizar, gestionar y hacer crecer tu negocio de forma simple, eficiente y sin complicaciones.</p>
             </div>
 
@@ -24,7 +24,12 @@ export default function Pricing(){
                     <ul className="list-none text-slate-400">
                         <li className="mb-1 flex"><i className="mdi mdi-check-circle-outline text-teal-500 text-[20px] align-middle me-2"></i> <span>Ideal para profesionales independientes o negocios en etapa temprana.</span></li>
                     </ul>
-                    <Link to="" className="h-10 px-6 tracking-wide inline-flex items-center justify-center font-medium rounded-md bg-teal-500/5 hover:bg-teal-500 text-teal-500 hover:text-white w-full mt-5">Solicitar Demo</Link>
+                    <button 
+                        onClick={() => window.openPineChat && window.openPineChat('Me interesa el Plan Semilla de L.499/mes. ¿Pueden darme más información?')} 
+                        className="h-10 px-6 tracking-wide inline-flex items-center justify-center font-medium rounded-md bg-teal-500/5 hover:bg-teal-500 text-teal-500 hover:text-white w-full mt-5 transition-colors"
+                    >
+                        Solicitar Demo
+                    </button>
                 </div>
 
                 <div className="group p-6 relative overflow-hidden shadow dark:shadow-gray-700 bg-white dark:bg-slate-900 rounded-md h-fit">
@@ -40,7 +45,12 @@ export default function Pricing(){
                         <li className="mb-1 flex"><i className="mdi mdi-check-circle-outline text-teal-500 text-[20px] align-middle me-2"></i> <span>Para negocios que comienzan a crecer y necesitan más control.</span></li>
                         <li className="mb-1 flex"><i className="mdi mdi-check-circle-outline text-teal-500 text-[20px] align-middle me-2"></i> <span>Todo lo del Plan Semilla, más: IA predictiva para gestión de citas y seguimiento</span></li>
                     </ul>
-                    <Link to="" className="h-10 px-6 tracking-wide inline-flex items-center justify-center font-medium rounded-md bg-teal-500/5 hover:bg-teal-500 text-teal-500 hover:text-white w-full mt-5">Contactar Agente</Link>
+                    <button 
+                        onClick={() => window.openPineChat && window.openPineChat('Me interesa el Plan Raíz de L.999/mes. ¿Pueden contactar a un agente conmigo?')} 
+                        className="h-10 px-6 tracking-wide inline-flex items-center justify-center font-medium rounded-md bg-teal-500/5 hover:bg-teal-500 text-teal-500 hover:text-white w-full mt-5 transition-colors"
+                    >
+                        Contactar Agente
+                    </button>
                 </div>
 
                 <div className="group relative overflow-hidden shadow dark:shadow-gray-700 bg-white dark:bg-slate-900 rounded-md h-fit">
@@ -62,7 +72,12 @@ export default function Pricing(){
                             <li className="mb-1 flex"><i className="mdi mdi-check-circle-outline text-teal-500 text-[20px] align-middle me-2"></i> <span>Asesoría mensual 1:1 con un experto</span></li>
                             <li className="mb-1 flex"><i className="mdi mdi-check-circle-outline text-teal-500 text-[20px] align-middle me-2"></i> <span>Hasta 10 usuarios</span></li>
                         </ul>
-                        <Link to="" className="h-10 px-6 tracking-wide inline-flex items-center justify-center font-medium rounded-md bg-teal-500 text-white w-full mt-5">Contratar ahora</Link>
+                        <button 
+                            onClick={() => window.openPineChat && window.openPineChat('Quiero contratar el Plan Bosque de L.1,799/mes. Es perfecto para mi empresa en expansión.')} 
+                            className="h-10 px-6 tracking-wide inline-flex items-center justify-center font-medium rounded-md bg-teal-500 text-white w-full mt-5 hover:bg-teal-600 transition-colors"
+                        >
+                            Contratar ahora
+                        </button>
 
                         <p className="text-sm text-slate-400 mt-1.5"><span className="text-red-600">*</span></p>
                     </div>
@@ -77,7 +92,12 @@ export default function Pricing(){
                         <ul className="list-none">
                             <li className="mb-1 font-medium flex"><i className="mdi mdi-check-circle-outline text-teal-500 text-[20px] align-middle me-2"></i> <span>Precio personalizado</span></li>
                         </ul>
-                        <Link to="" className="h-10 px-6 tracking-wide inline-flex items-center justify-center font-medium rounded-md bg-teal-500/5 hover:bg-teal-500 text-teal-500 hover:text-white w-full mt-5">Cotizar</Link>
+                        <button 
+                            onClick={() => window.openPineChat && window.openPineChat('Necesito una solución personalizada para mi empresa. ¿Pueden ayudarme con una cotización a medida?')} 
+                            className="h-10 px-6 tracking-wide inline-flex items-center justify-center font-medium rounded-md bg-teal-500/5 hover:bg-teal-500 text-teal-500 hover:text-white w-full mt-5 transition-colors"
+                        >
+                            Cotizar
+                        </button>
                     </div>
                 </div>
             </div>

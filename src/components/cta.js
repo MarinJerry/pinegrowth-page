@@ -38,14 +38,19 @@ export default function Cta(){
                                     <div className="mt-8">
                                         <div className="section-title text-md-start">
                                             <h6 className="text-white/70 text-sm font-semibold uppercase">Obtener un DEMO</h6>
-                                            <h3 className="font-semibold text-2xl leading-normal text-white mt-2">Prueba Adel-IA AHORA<br/> e impulsa tu negocio</h3>
+                                            <h3 className="font-semibold text-2xl leading-normal text-white mt-2">Prueba Pine AI AHORA<br/> e impulsa tu negocio</h3>
                                         </div>
                                     </div>
 
                                     <div className="mt-8">
                                         <div className="section-title text-md-start">
-                                            <p className="text-white/70 max-w-xl mx-auto mb-2">Adel-IA es la plataforma de IA por excelencia para la gestión de PYMES, impulsa la prestación de servicios con nuestra asistente virtual.</p>
-                                            <Link to="" className="text-white">Ver más <i className="mdi mdi-chevron-right align-middle"></i></Link>
+                                            <p className="text-white/70 max-w-xl mx-auto mb-2">Pine es la plataforma de IA por excelencia para la gestión de PYMES, impulsa la prestación de servicios con nuestra asistente virtual.</p>
+                                            <button 
+                                                onClick={() => window.openPineChat && window.openPineChat('Me gustaría obtener un DEMO de sus soluciones de IA')} 
+                                                className="text-white hover:text-teal-200 transition-colors cursor-pointer"
+                                            >
+                                                Solicitar DEMO <i className="mdi mdi-chevron-right align-middle"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

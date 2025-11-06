@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 const useChatWidget = (config = {}) => {
   const {
-    api = 'http://127.0.0.1:7000/api/v1/chat/fast',
+    api = 'http://127.0.0.1:8001/api/v1/chat/role',
     color = '#61dafb',
     botName = 'Asistente',
     welcome = '¡Hola! ¿Como puedo ayudarte a impulsar tu negocio con IA?'

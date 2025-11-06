@@ -26,12 +26,12 @@ import 'react-modal-video/scss/modal-video.scss';
 export default function IndexThree(){
     let [isOpen, setOpen] = useState(false);
     
-    // Configurar el widget de chat de Adela IA
+    // Configurar el widget de chat de Pine Sales AI
     useChatWidget({
-        api: 'http://127.0.0.1:7000/api/v1/chat/fast', // Cambia esta URL por tu API real
+        api: 'http://127.0.0.1:8001/api/v1/chat/role',  // Cambiado de chat/role a chat para usar el formato correcto
         color: '#14b8a6', // Color teal que coincide con tu tema
-        botName: 'Adela IA',
-        welcome: '¡Hola! Soy Adela, tu asistente de IA. ¿Cómo puedo ayudarte a impulsar tu negocio hoy?'
+        botName: 'Pine Sales AI',
+        welcome: '¡Hola! 👋 Soy tu especialista en soluciones de IA de Pine. ¿En qué área de tu negocio te gustaría automatizar procesos? Te ayudo a encontrar la solución perfecta.'
     });
     
     return(
@@ -45,7 +45,22 @@ export default function IndexThree(){
                         <p className="text-slate-400 text-lg max-w-xl">Empoderamos a PYMEs y emprendedores con innovación, tecnología y consultoría adaptada a sus necesidades.</p>
                     
                         <div className="relative mt-6 space-x-1">
-                            <Link to="" className="h-10 px-6 tracking-wide inline-flex items-center justify-center font-medium rounded-md bg-teal-500 text-white">¡Conversemos!</Link>
+                            <button 
+                                onClick={() => {
+                                    if (window.openPineChat) {
+                                        window.openPineChat('Hola, me interesa conocer más sobre sus soluciones de automatización con IA');
+                                    } else {
+                                        // Fallback si el chat no está listo
+                                        window.scrollTo({ 
+                                            top: document.getElementById('contact')?.offsetTop || 0, 
+                                            behavior: 'smooth' 
+                                        });
+                                    }
+                                }} 
+                                className="h-10 px-6 tracking-wide inline-flex items-center justify-center font-medium rounded-md bg-teal-500 text-white hover:bg-teal-600 transition-colors"
+                            >
+                                ¡Conversemos!
+                            </button>
                             {/* <Link to="#!" onClick={() => setOpen(true)} className="size-9 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center bg-teal-500 text-white rounded-full lightbox"><i className="mdi mdi-play text-xl align-middle"></i></Link><small className="text-sm font-medium uppercase align-middle ms-2">Watch Now</small> */}
                         </div>
                             <ModalVideo

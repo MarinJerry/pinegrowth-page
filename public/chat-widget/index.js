@@ -102,11 +102,100 @@
 
     // Welcome message
     addBotMessage(config.welcome);
+    
+    // Mensaje de seguimiento después de 3 segundos
+    setTimeout(() => {
+      addBotMessage('**Algunas áreas donde podemos ayudarte:**\n\n• **Automatización de ventas** - CRM inteligente y seguimiento automático\n• **Chatbots para atención al cliente** - Respuestas 24/7\n• **Análisis de datos con IA** - Insights para tu negocio\n• **Procesos administrativos** - Reduce tareas repetitivas\n\n¿Cuál de estas áreas te interesa más para tu negocio?');
+    }, 3000);
+
+    // Función para procesar markdown y convertirlo a HTML limpio
+    function formatMarkdownToHTML(text) {
+      // Primero, limpiar el texto
+      let formatted = text
+        // Remover asteriscos sueltos al inicio/final
+        .replace(/^\*+\s*/, '')
+        .replace(/\s*\*+$/, '')
+        
+        // Negritas **texto** o __texto__
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/__(.*?)__/g, '<strong>$1</strong>')
+        
+        // Cursivas *texto* (pero no si está en una lista)
+        .replace(/(?<![\s•→])\*(.*?)\*(?!\s*[\n•→])/g, '<em>$1</em>')
+        .replace(/(?<![\s•→])_(.*?)_(?!\s*[\n•→])/g, '<em>$1</em>')
+        
+        // Enlaces [texto](url)
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+        
+        // Listas con - o * (mejoradas)
+        .replace(/^[\s]*[-*]\s+(.+)$/gm, '<div style="margin:2px 0;">• $1</div>')
+        
+        // Listas numeradas
+        .replace(/^[\s]*(\d+)\.\s+(.+)$/gm, '<div style="margin:2px 0;">$1. $2</div>')
+        
+        // Código inline `código`
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        
+        // Títulos ### Título
+        .replace(/^#{1,3}\s+(.+)$/gm, '<strong style="display:block;margin:8px 0 4px 0;color:#0a0a0a;">$1</strong>')
+        
+        // Párrafos separados por líneas vacías
+        .replace(/\n\s*\n/g, '<br><br>')
+        
+        // Saltos de línea simples
+        .replace(/\n/g, '<br>');
+
+      // Limpiar espacios extra y múltiples <br>
+      formatted = formatted
+        .replace(/<br\s*\/?>\s*<br\s*\/?>\s*<br\s*\/?>/g, '<br><br>')
+        .trim();
+
+      return formatted;
+    }
+
+    // Función para sanitizar HTML básico (solo permitir tags seguros)
+    function sanitizeHTML(html) {
+      const allowedTags = ['strong', 'em', 'br', 'div', 'code', 'a'];
+      const temp = document.createElement('div');
+      temp.innerHTML = html;
+      
+      // Remover scripts y eventos
+      const scripts = temp.querySelectorAll('script');
+      scripts.forEach(s => s.remove());
+      
+      // Limpiar atributos peligrosos
+      const allElements = temp.querySelectorAll('*');
+      allElements.forEach(el => {
+        if (!allowedTags.includes(el.tagName.toLowerCase())) {
+          el.replaceWith(...el.childNodes);
+          return;
+        }
+        // Remover atributos que no sean href, target, rel, style básico
+        const attrs = [...el.attributes];
+        attrs.forEach(attr => {
+          if (!['href', 'target', 'rel', 'style'].includes(attr.name)) {
+            el.removeAttribute(attr.name);
+          }
+        });
+      });
+      
+      return temp.innerHTML;
+    }
 
     function addBotMessage(text){
       const b = document.createElement('div');
       b.className = 'aw-msg aw-bot';
-      b.textContent = text;
+      
+      try {
+        // Procesar el markdown y convertirlo a HTML
+        const formattedText = formatMarkdownToHTML(text);
+        const safeHTML = sanitizeHTML(formattedText);
+        b.innerHTML = safeHTML;
+      } catch (error) {
+        // En caso de error, mostrar texto plano
+        b.textContent = text;
+      }
+      
       messagesEl.appendChild(b);
       messagesEl.scrollTop = messagesEl.scrollHeight;
     }
@@ -137,16 +226,27 @@
       textEl.value = '';
       setTyping(true);
       try{
-        const payload = { message: text, session_id: session };
+        // Contexto del especialista de ventas de Pine
+        const contextText = `Trabajas para PineGrowth Honduras (https://pinehn.com), una empresa líder en automatización con IA para PYMEs y emprendedores en Honduras con más de 5 años de experiencia en desarrollo de software. Ofreces soluciones de automatización de procesos empresariales, agentes de IA personalizados, desarrollo de software a medida, chatbots y asistentes virtuales, y consultoría en transformación digital. Tu objetivo es identificar las necesidades del cliente y presentar las soluciones de PineGrowth de manera consultiva, profesional y orientada a resultados y cerrar ventas al escalar el contacto luego de identificar la oportunidad de venta y los datos de contacto del cliente. Se practico y respuestas no tan grandes para cerrar ventas rapido. Al obtener los datos del cliente te despides cordialmente e indicas que un representante se pondrá en contacto pronto.`;
+
+        const payload = { 
+          context: contextText,
+          message: text,
+          role: "Especialista en ventas de software empresarial de PineGrowth Honduras",
+          temperature: 0.8,
+          user_id: session
+        };
+        
         const res = await fetch(config.api, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(payload) });
         if(!res.ok) throw new Error('Network error');
         const data = await res.json();
-        const reply = data.response;
+        // Manejo más robusto de diferentes formatos de respuesta
+        const reply = data.response || data.reply || data.message || data.content || 'Disculpa, tengo problemas técnicos. Puedes contactar directamente a Pine en https://pine.hn.com';
         setTyping(false);
-        addBotMessage(reply || 'Lo siento, no entendí eso.');
+        addBotMessage(reply);
       }catch(err){
         setTyping(false);
-        addBotMessage('Lo siento, no pude conectar con el servicio.');
+        addBotMessage('Disculpa, tengo problemas técnicos. Puedes contactar directamente a Pine en https://pine.hn.com o escribir a contacto@pine.hn.com');
       }
     }
 
@@ -171,6 +271,31 @@
         panel.classList.remove('aw-open'); container.classList.remove('aw-open');
       }
     });
+
+    // Función global para abrir el chat desde cualquier parte de la página
+    window.openPineChat = function(message = null) {
+      // Abrir el panel del chat
+      container.classList.add('aw-open');
+      panel.classList.add('aw-open');
+      
+      // Si se proporciona un mensaje, pre-llenarlo en el input
+      if (message) {
+        setTimeout(() => {
+          textEl.value = message;
+          textEl.focus();
+          // Opcional: enviar automáticamente después de un breve delay
+          // setTimeout(() => sendMessage(), 500);
+        }, 300);
+      } else {
+        // Solo enfocar el input
+        setTimeout(() => {
+          textEl.focus();
+        }, 300);
+      }
+    };
+
+    // También exponer una función para verificar si el chat está disponible
+    window.isPineChatReady = true;
 
   })();
 
