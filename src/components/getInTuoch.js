@@ -117,12 +117,14 @@ export default function GetInTouch() {
                                         </div>
                                     </div>
                                     <button
-                                        type="submit"
-                                        id="submit"
-                                        name="send"
+                                        type="button"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            window.openPineChat && window.openPineChat('Hola, me gustaría contactar con su equipo para discutir un proyecto');
+                                        }}
                                         className="h-10 px-6 tracking-wide inline-flex items-center justify-center font-medium rounded-md bg-teal-500 text-white mt-2"
                                     >
-                                        Enviar Mensaje
+                                        Contactar vía Chat
                                     </button>
                                 </form>
                             </div>

@@ -1,14 +1,17 @@
 {
   "name": "pinegrowth-page",
   "version": "1.0.0",
-  "description": "Upcover - React js Business Landing Page Template",
+  "description": "PineGrowth - Cultivando exitos juntos",
   "private": true,
   "homepage": ".",
   "dependencies": {
+    "@react-three/drei": "^9.96.0",
+    "@react-three/fiber": "^8.15.12",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "emailjs-com": "^3.2.0",
+    "framer-motion": "^12.23.26",
     "react": "^18.2.0",
     "react-countup": "^6.5.0",
     "react-dom": "^18.2.0",
@@ -21,11 +24,13 @@
     "react-snap": "^1.23.0",
     "sass": "^1.70.0",
     "serve": "^14.2.4",
+    "three": "^0.160.0",
     "tiny-slider-react": "^0.5.7",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "serve -s build",
+    "start": "react-scripts start",
+    "serve": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

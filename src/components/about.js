@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import aboutImage from '../assets/images/about.jpg'
 
 import CountUp from 'react-countup';
@@ -16,7 +15,7 @@ export default function About(){
 
                                 <div className="absolute top-1/2 -translate-y-1/2 start-0 end-0 mx-auto size-56 flex justify-center items-center bg-white dark:bg-slate-900 rounded-full shadow dark:shadow-gray-700">
                                     <div className="text-center">
-                                        <span className="text-teal-500 text-2xl font-semibold mb-0 block"><CountUp className="counter-value text-6xl font-semibold" start={0} end={6}/>+</span>
+                                        <span className="text-teal-500 text-2xl font-semibold mb-0 block"><CountUp className="counter-value text-6xl font-semibold" start={0} end={7}/>+</span>
                                         <span className="font-semibold block mt-2">Años de <br/> Experiencia</span>
                                     </div>
                                 </div>

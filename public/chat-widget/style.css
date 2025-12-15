@@ -2,14 +2,17 @@
 :host{all:initial}
 #aw-root{font-family:Inter, Roboto, Arial, Helvetica, sans-serif;position:fixed;z-index:2147483647;bottom:20px;right:20px}
 #adela-widget{display:flex;flex-direction:column;align-items:flex-end}
-#aw-toggle{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:none;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.12);cursor:pointer;font-weight:600}
-#aw-bot-initial{width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#0b93f6}
+#aw-toggle{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:none;background:#14b8a6;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.12);cursor:pointer;font-weight:600;transition:transform 0.2s ease, box-shadow 0.2s ease}
+#aw-toggle:hover{transform:scale(1.05);box-shadow:0 8px 24px rgba(20,184,166,.3)}
+#aw-bot-initial{width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#14b8a6}
+#aw-bot-initial svg{width:24px;height:24px;display:block;fill:currentColor}
 #aw-bot-name{display:none}
-#aw-panel{width:360px;max-width:92vw;height:520px;max-height:78vh;background:#fff;border-radius:12px;box-shadow:0 12px 40px rgba(2,6,23,.2);overflow:hidden;display:flex;flex-direction:column;transform:translateY(20px) scale(.98);opacity:0;pointer-events:none;transition:all .25s cubic-bezier(.2,.9,.25,1)}
-#aw-panel.aw-open{transform:translateY(0) scale(1);opacity:1;pointer-events:auto}
+#aw-panel{width:360px;max-width:92vw;height:520px;max-height:78vh;background:#fff;border-radius:12px;box-shadow:0 12px 40px rgba(2,6,23,.2);overflow:hidden;display:none;flex-direction:column;transform:translateY(20px) scale(.98);opacity:0;pointer-events:none;transition:all .25s cubic-bezier(.2,.9,.25,1)}
+#aw-panel.aw-open{display:flex;transform:translateY(0) scale(1);opacity:1;pointer-events:auto}
 #aw-header{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid #f1f1f3;background:linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0));}
 #aw-header-left{display:flex;align-items:center;gap:10px}
 #aw-header-avatar{width:42px;height:42px;border-radius:10px;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+#aw-header-avatar svg{width:24px;height:24px;display:block}
 #aw-header-title{font-weight:700}
 #aw-messages{padding:16px;flex:1;overflow:auto;display:flex;flex-direction:column;gap:8px;background:linear-gradient(180deg,#fff,#fbfdff)}
 .aw-msg{max-width:78%;padding:10px 12px;border-radius:12px;line-height:1.4;word-wrap:break-word}
@@ -23,7 +26,8 @@
 .aw-bot br{line-height:1.2}
 #aw-input{display:flex;gap:8px;padding:12px;border-top:1px solid #f4f4f6}
 #aw-text{flex:1;resize:none;height:44px;padding:10px;border-radius:10px;border:1px solid #eef2f6}
-#aw-send{background:#0b93f6;color:#fff;border:none;padding:10px 12px;border-radius:10px;cursor:pointer}
-#adela-widget.aw-open #aw-panel{transform:none;opacity:1}
-#aw-close{border:none;background:transparent;font-size:20px;cursor:pointer}
+#aw-send{background:#14b8a6;color:#fff;border:none;padding:10px 12px;border-radius:10px;cursor:pointer;font-weight:600;transition:background 0.2s}
+#aw-send:hover{background:#0d9488}
+#aw-close{border:none;background:transparent;font-size:28px;cursor:pointer;color:#666;line-height:1;padding:4px 8px;transition:color 0.2s}
+#aw-close:hover{color:#000}
 @media (max-width:480px){#aw-panel{width:100vw;height:68vh;right:0;left:0;border-radius:12px 12px 0 0;max-width:100%;bottom:0}}

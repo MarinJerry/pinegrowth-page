@@ -26,7 +26,7 @@ export default function Services(){
                                     <p className="text-slate-400 mt-3">{item.desc}</p>
         
                                     <div className="mt-6">
-                                        <Link to="" className="text-teal-500">Cotizar <i className="mdi mdi-chevron-right align-middle"></i></Link>
+                                        <button onClick={() => window.openPineChat && window.openPineChat(`Me interesa el servicio de ${item.title}. ¿Pueden darme más información?`)} className="text-teal-500 hover:text-teal-600 bg-transparent border-0 cursor-pointer">Cotizar <i className="mdi mdi-chevron-right align-middle"></i></button>
                                     </div>
                                 </div>
         

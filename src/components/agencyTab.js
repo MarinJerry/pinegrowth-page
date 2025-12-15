@@ -54,7 +54,7 @@ export default function AgencyTab(){
                                     <h5 className="text-lg font-medium">Feedback constante, raíces profundas</h5>
                                     <p className="text-slate-400 mt-4">Escuchamos activamente, aprendemos contigo y ajustamos el rumbo para asegurar que cada entrega se alinee con tu visión.</p>
                                     <div className="mt-4">
-                                        <Link to="" className="text-teal-500">Saber más <i className="mdi mdi-chevron-right align-middle"></i></Link>
+                                        <button onClick={() => window.openPineChat && window.openPineChat('Me interesa conocer más sobre su metodología de trabajo con feedback constante')} className="text-teal-500 hover:text-teal-600 bg-transparent border-0 cursor-pointer">Saber más <i className="mdi mdi-chevron-right align-middle"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +65,7 @@ export default function AgencyTab(){
                                     <h5 className="text-lg font-medium">Colaboración como ecosistema</h5>
                                     <p className="text-slate-400 mt-4">Trabajamos codo a codo contigo, no como proveedores, sino como aliados estratégicos que entienden tu entorno y lo hacen crecer.</p>
                                     <div className="mt-4">
-                                        <Link to="" className="text-teal-500">Saber más <i className="mdi mdi-chevron-right align-middle"></i></Link>
+                                        <button onClick={() => window.openPineChat && window.openPineChat('Quiero saber cómo trabajan como aliados estratégicos con sus clientes')} className="text-teal-500 hover:text-teal-600 bg-transparent border-0 cursor-pointer">Saber más <i className="mdi mdi-chevron-right align-middle"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@ export default function AgencyTab(){
                                     <h5 className="text-lg font-medium">Sprints que siembran valor real</h5>
                                     <p className="text-slate-400 mt-4">Dividimos cada proyecto en ciclos cortos y productivos para entregar resultados tangibles rápidamente.</p>
                                     <div className="mt-4">
-                                        <Link to="" className="text-teal-500">Saber más <i className="mdi mdi-chevron-right align-middle"></i></Link>
+                                        <button onClick={() => window.openPineChat && window.openPineChat('Me gustaría conocer más sobre su metodología de sprints y entregables')} className="text-teal-500 hover:text-teal-600 bg-transparent border-0 cursor-pointer">Saber más <i className="mdi mdi-chevron-right align-middle"></i></button>
                                     </div>
                                 </div>
                             </div>

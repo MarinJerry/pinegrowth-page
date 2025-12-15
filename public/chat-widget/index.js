@@ -7,6 +7,12 @@
     return scripts[scripts.length-1];
   })();
 
+  // Verificar que SCRIPT existe antes de continuar
+  if (!SCRIPT) {
+    console.error('Pine Chat Widget: No se pudo obtener el script actual');
+    return;
+  }
+
   const config = {
     api: SCRIPT.getAttribute('data-api') || null,
     color: SCRIPT.getAttribute('data-color') || '#0b93f6',
@@ -36,7 +42,7 @@
   // Fetch CSS from same directory as script if possible
   (function injectCSS(){
     try{
-      const src = SCRIPT.src || '';
+      const src = (SCRIPT && SCRIPT.src) || '/chat-widget/index.js';
       const base = src.split('/').slice(0,-1).join('/');
       const cssPath = base + '/style.css';
       fetch(cssPath).then(r=>{ if(r.ok) return r.text(); throw new Error('no css'); }).then(css=>{
@@ -57,13 +63,27 @@
     root.innerHTML = `
       <div id="adela-widget" aria-hidden="false">
         <button id="aw-toggle" aria-label="Open chat">
-          <span id="aw-bot-initial">${config.botName.charAt(0) || 'A'}</span>
+          <span id="aw-bot-initial">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="currentColor"/>
+              <circle cx="9" cy="9" r="1.5" fill="white"/>
+              <circle cx="15" cy="9" r="1.5" fill="white"/>
+              <path d="M8 14s1 2 4 2 4-2 4-2" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            </svg>
+          </span>
           <span id="aw-bot-name">${config.botName}</span>
         </button>
         <div id="aw-panel" role="dialog" aria-modal="true" aria-label="Chat window">
           <div id="aw-header">
             <div id="aw-header-left">
-              <div id="aw-header-avatar">${config.botName.charAt(0) || 'A'}</div>
+              <div id="aw-header-avatar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="currentColor"/>
+                  <circle cx="9" cy="9" r="1.5" fill="white"/>
+                  <circle cx="15" cy="9" r="1.5" fill="white"/>
+                  <path d="M8 14s1 2 4 2 4-2 4-2" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                </svg>
+              </div>
               <div id="aw-header-title">${config.botName}</div>
             </div>
             <button id="aw-close" aria-label="Close chat">×</button>
@@ -250,16 +270,29 @@
       }
     }
 
+    // Helper functions for opening/closing
+    function openChat() {
+      panel.classList.add('aw-open');
+      setTimeout(() => textEl.focus(), 300);
+    }
+    
+    function closeChat() {
+      panel.classList.remove('aw-open');
+    }
+    
     // Events
     toggle.addEventListener('click', ()=>{
-      container.classList.toggle('aw-open');
-      panel.classList.toggle('aw-open');
+      if (panel.classList.contains('aw-open')) {
+        closeChat();
+      } else {
+        openChat();
+      }
     });
-    closeBtn.addEventListener('click', ()=>{ panel.classList.remove('aw-open'); container.classList.remove('aw-open'); });
+    closeBtn.addEventListener('click', closeChat);
     sendBtn.addEventListener('click', sendMessage);
     textEl.addEventListener('keydown', (e)=>{
       if(e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); sendMessage(); }
-      if(e.key === 'Escape'){ panel.classList.remove('aw-open'); container.classList.remove('aw-open'); }
+      if(e.key === 'Escape'){ closeChat(); }
     });
 
     // make accessible: focus handling
@@ -268,34 +301,30 @@
     // Responsive: close when clicking outside
     document.addEventListener('click', (e)=>{
       if(!container.contains(e.target) && panel.classList.contains('aw-open')){
-        panel.classList.remove('aw-open'); container.classList.remove('aw-open');
+        closeChat();
       }
     });
 
     // Función global para abrir el chat desde cualquier parte de la página
     window.openPineChat = function(message = null) {
-      // Abrir el panel del chat
-      container.classList.add('aw-open');
-      panel.classList.add('aw-open');
+      console.log('openPineChat called with message:', message);
+      
+      // Abrir el panel del chat usando la función helper
+      openChat();
       
       // Si se proporciona un mensaje, pre-llenarlo en el input
       if (message) {
         setTimeout(() => {
           textEl.value = message;
           textEl.focus();
-          // Opcional: enviar automáticamente después de un breve delay
-          // setTimeout(() => sendMessage(), 500);
-        }, 300);
-      } else {
-        // Solo enfocar el input
-        setTimeout(() => {
-          textEl.focus();
-        }, 300);
+        }, 350);
       }
     };
 
     // También exponer una función para verificar si el chat está disponible
     window.isPineChatReady = true;
+    
+    console.log('Pine Chat Widget initialized and ready');
 
   })();
 
