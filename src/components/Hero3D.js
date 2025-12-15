@@ -86,6 +86,7 @@ export default function Hero3D() {
             <Suspense fallback={<Loader />}>
                 <Canvas 
                     camera={{ position: [0, 0, 8], fov: 60 }}
+                    
                     gl={{ antialias: true, alpha: false }}
                     dpr={[1, 2]}
                     onCreated={({ gl }) => {

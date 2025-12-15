@@ -11,7 +11,6 @@ import Client from "../components/client";
 import Pricing from "../components/pricing";
 import GetInTouch from "../components/getInTuoch";
 import Footer from "../components/footer";
-import Switcher from "../components/switcher";
 
 import { FiMonitor } from '../assets/icons/vander'
 import useChatWidget from '../hooks/useChatWidget';
@@ -26,7 +25,7 @@ const Hero3D = lazy(() => import("../components/Hero3D"));
 
 export default function IndexThree() {
     let [isOpen, setOpen] = useState(false);
-    const [showHero3D, setShowHero3D] = useState(true);
+    const [showHero3D] = useState(true);
 
     // Configurar el widget de chat de Pine Sales AI
     useChatWidget({
