@@ -62,19 +62,19 @@ export const clientData = [
         image:client1,
         name:'Armando Delgado',
         title:'CEO & Fundador de Orbis Honduras',
-        desc:'". "'
+        desc:'"Trabajar con este equipo transformó completamente nuestra operación. Su enfoque profesional y soluciones innovadoras superaron nuestras expectativas."'
     },
     {
         image:client4,
         name:'Franklin Lamelas',
         title:'CEO & Fundador de innovandohoy.com',
-        desc:'" . "'
+        desc:'"Excelente experiencia. Entregaron un producto de calidad excepcional en tiempo récord. Su compromiso con la excelencia es evidente en cada detalle."'
     },
     {
         image:client6,
         name:'Mario Suazo',
         title:'CEO & Fundador de AppLand',
-        desc:'"."'
+        desc:'"La mejor inversión tecnológica que hemos hecho. Su expertise y dedicación nos ayudaron a alcanzar nuestros objetivos de manera efectiva y eficiente."'
     }
 ]
 
