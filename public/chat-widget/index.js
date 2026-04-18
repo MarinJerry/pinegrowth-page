@@ -394,6 +394,44 @@
       }
     }
 
+    // Función para enviar resumen de conversación
+    async function sendConversationSummary() {
+      // Solo enviar si hay al menos 4 mensajes (2 intercambios mínimo)
+      if (conversationHistory.length < 4) {
+        console.log('Conversación muy corta para generar resumen');
+        return;
+      }
+
+      try {
+        console.log('📧 Enviando resumen de conversación...');
+        
+        const summaryEndpoint = config.api.replace('/chat/role', '/chat/send-summary');
+        
+        const payload = {
+          conversation_history: conversationHistory,
+          user_id: session,
+          agent_name: "Asesor Comercial PineGrowth Honduras",
+          recipient_email: "sales@pinehn.com"
+        };
+
+        const response = await fetch(summaryEndpoint + `?user_id=${session}&agent_name=Asesor%20Comercial%20PineGrowth%20Honduras&recipient_email=sales@pinehn.com`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(conversationHistory)
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          console.log('✅ Resumen enviado:', result);
+        } else {
+          console.warn('⚠️ Error enviando resumen:', response.status);
+        }
+      } catch (error) {
+        console.error('❌ Error al enviar resumen:', error);
+        // No mostramos error al usuario, solo loggeamos
+      }
+    }
+
     // Helper functions for opening/closing
     function openChat() {
       panel.classList.add('aw-open');
@@ -401,6 +439,9 @@
     }
     
     function closeChat() {
+      // Enviar resumen antes de cerrar (async, no bloquea el cierre)
+      sendConversationSummary();
+      
       panel.classList.remove('aw-open');
     }
     
