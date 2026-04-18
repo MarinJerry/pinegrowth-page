@@ -114,19 +114,62 @@
 
     // Session
     const STORAGE_KEY = 'adela_widget_session_id';
+    const HISTORY_KEY = 'adela_widget_history';
     function genId(){
       return 's_' + Math.random().toString(36).slice(2) + Date.now().toString(36);
     }
     let session = localStorage.getItem(STORAGE_KEY);
     if(!session){ session = genId(); localStorage.setItem(STORAGE_KEY, session); }
 
-    // Welcome message
-    addBotMessage(config.welcome);
+    // Historial de conversación
+    let conversationHistory = [];
+    try {
+      const stored = localStorage.getItem(HISTORY_KEY + '_' + session);
+      if (stored) {
+        conversationHistory = JSON.parse(stored);
+      }
+    } catch (e) {
+      console.warn('Error loading conversation history:', e);
+      conversationHistory = [];
+    }
+
+    // Función para guardar historial
+    function saveHistory() {
+      try {
+        // Limitar a los últimos 20 mensajes para no sobrecargar localStorage
+        const limitedHistory = conversationHistory.slice(-20);
+        localStorage.setItem(HISTORY_KEY + '_' + session, JSON.stringify(limitedHistory));
+      } catch (e) {
+        console.warn('Error saving conversation history:', e);
+      }
+    }
+
+    // Restaurar mensajes previos si existen
+    if (conversationHistory.length > 0) {
+      conversationHistory.forEach(msg => {
+        if (msg.role === 'user') {
+          addUserMessage(msg.content, false); // false = no guardar de nuevo
+        } else if (msg.role === 'assistant') {
+          addBotMessage(msg.content, false);
+        }
+      });
+    } else {
+      // Welcome message solo si no hay historial
+      const welcomeMsg = config.welcome;
+      addBotMessage(welcomeMsg, false);
+      conversationHistory.push({ role: 'assistant', content: welcomeMsg });
+      saveHistory();
+    }
     
-    // Mensaje de seguimiento después de 3 segundos
-    setTimeout(() => {
-      addBotMessage('**Algunas áreas donde podemos ayudarte:**\n\n• **Automatización de ventas** - CRM inteligente y seguimiento automático\n• **Chatbots para atención al cliente** - Respuestas 24/7\n• **Análisis de datos con IA** - Insights para tu negocio\n• **Procesos administrativos** - Reduce tareas repetitivas\n\n¿Cuál de estas áreas te interesa más para tu negocio?');
-    }, 3000);
+    // Mensaje de seguimiento después de 3 segundos (solo si no hay historial)
+    if (conversationHistory.length <= 1) {
+      setTimeout(() => {
+        const followUpMsg = '**Algunas áreas donde podemos ayudarte:**\n\n• **Automatización de ventas** - CRM inteligente y seguimiento automático\n• **Chatbots para atención al cliente** - Respuestas 24/7\n• **Análisis de datos con IA** - Insights para tu negocio\n• **Procesos administrativos** - Reduce tareas repetitivas\n\n¿Cuál de estas áreas te interesa más para tu negocio?';
+        addBotMessage(followUpMsg, false);
+        conversationHistory.push({ role: 'assistant', content: followUpMsg });
+        saveHistory();
+      }, 3000);
+    }
 
     // Función para procesar markdown y convertirlo a HTML limpio
     function formatMarkdownToHTML(text) {
@@ -202,7 +245,7 @@
       return temp.innerHTML;
     }
 
-    function addBotMessage(text){
+    function addBotMessage(text, saveToHistory = true){
       const b = document.createElement('div');
       b.className = 'aw-msg aw-bot';
       
@@ -218,14 +261,26 @@
       
       messagesEl.appendChild(b);
       messagesEl.scrollTop = messagesEl.scrollHeight;
+
+      // Guardar en historial si se especifica
+      if (saveToHistory) {
+        conversationHistory.push({ role: 'assistant', content: text });
+        saveHistory();
+      }
     }
 
-    function addUserMessage(text){
+    function addUserMessage(text, saveToHistory = true){
       const u = document.createElement('div');
       u.className = 'aw-msg aw-user';
       u.textContent = text;
       messagesEl.appendChild(u);
       messagesEl.scrollTop = messagesEl.scrollHeight;
+
+      // Guardar en historial si se especifica
+      if (saveToHistory) {
+        conversationHistory.push({ role: 'user', content: text });
+        saveHistory();
+      }
     }
 
     function setTyping(on){
@@ -246,6 +301,12 @@
       textEl.value = '';
       setTyping(true);
       try{
+        // Construir historial para el contexto (últimos 10 mensajes para no sobrecargar)
+        const recentHistory = conversationHistory.slice(-10).map(msg => ({
+          role: msg.role,
+          content: msg.content
+        }));
+
         const payload = { 
           agent_name: "Asesor Comercial PineGrowth Honduras",
           expertise_areas: [
@@ -258,6 +319,7 @@
             "sistemas de gestión empresarial"
           ],
           message: text,
+          conversation_history: recentHistory,  // ← NUEVO: Enviar historial
           personality: "Agente de ventas profesional, consultivo, empático y enfocado en entender las necesidades del cliente antes de proponer soluciones. Hablas en español profesional de Honduras. Tu prioridad es agendar sesiones comerciales con clientes potenciales calificados.",
           temperature: 0.4,
           tone: "Profesional, directo pero amigable, orientado a generar confianza y agendar reuniones",
@@ -298,14 +360,19 @@
             contact_collection: "Para agendar necesito: nombre completo, empresa, teléfono/WhatsApp, email y tu mejor horario (mañana/tarde)"
           },
           response_constraints: {
-            max_paragraphs: 2,
+            max_paragraphs: 3,
             include_cta: true,
             avoid_technical_overload: true,
             always_ask_qualifying_questions: true,
+            maintain_conversation_context: true,
             escalate_to_human: "Después de capturar datos de contacto completos, confirmar que un ejecutivo comercial se comunicará en máximo 24 horas"
           },
           behavioral_rules: [
-            "Siempre presenta soluciones enfocadas en el beneficio de negocio, no en tecnología pura",
+            "SIEMPRE lee y recuerda el historial de la conversación antes de responder",
+            "Si el cliente ya dio su nombre, úsalo en la conversación",
+            "Si el cliente ya expresó interés en algo específico, mantén el foco en eso",
+            "Si ya se agendó una reunión, confirma los detalles pero no pidas agendar de nuevo",
+            "Presenta soluciones enfocadas en el beneficio de negocio, no en tecnología pura",
             "Usa ejemplos concretos de cómo hemos ayudado a otros clientes similares",
             "Si el cliente pregunta por precios, indica que depende del alcance y ofrece sesión de diagnóstico",
             "No prometas fechas de entrega sin consultar con el equipo, mejor agenda reunión",
@@ -318,12 +385,12 @@
         if(!res.ok) throw new Error('Network error');
         const data = await res.json();
         // Manejo más robusto de diferentes formatos de respuesta
-        const reply = data.response || data.reply || data.message || data.content || 'Disculpa, tengo problemas técnicos. Puedes contactar directamente a Pine en https://pine.hn.com';
+        const reply = data.response || data.reply || data.message || data.content || 'Disculpa, tengo problemas técnicos. Puedes contactar directamente a Pine en https://pinehn.com';
         setTyping(false);
         addBotMessage(reply);
       }catch(err){
         setTyping(false);
-        addBotMessage('Disculpa, tengo problemas técnicos. Puedes contactar directamente a Pine en https://pine.hn.com o escribir a contacto@pine.hn.com');
+        addBotMessage('Disculpa, tengo problemas técnicos. Puedes contactar directamente a Pine en https://pinehn.com o escribir a contacto@pine.hn.com');
       }
     }
 
