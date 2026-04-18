@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 const useChatWidget = (config = {}) => {
   const {
-    api = 'https://adela-iys3izl9k-jerry-marins-projects.vercel.app/api/v1/chat/role',
+    api = 'https://adela-api.vercel.app/api/v1/chat/role',
     color = '#61dafb',
     botName = 'Asistente',
     welcome = '¡Hola! ¿Como puedo ayudarte a impulsar tu negocio con IA?'

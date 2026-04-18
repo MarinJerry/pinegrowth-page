@@ -29,7 +29,7 @@ export default function IndexThree() {
 
     // Configurar el widget de chat de Pine Sales AI
     useChatWidget({
-        api: 'https://adela-iys3izl9k-jerry-marins-projects.vercel.app/api/v1/chat/role',
+        api: 'https://adela-api.vercel.app/api/v1/chat/role',
         color: '#14b8a6',
         botName: 'Pine Sales AI',
         welcome: '¡Hola! 👋 Soy tu especialista en soluciones de IA de Pine. ¿En qué área de tu negocio te gustaría automatizar procesos? Te ayudo a encontrar la solución perfecta.'
